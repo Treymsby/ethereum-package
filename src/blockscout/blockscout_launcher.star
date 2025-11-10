@@ -91,10 +91,6 @@ def launch_blockscout(
     el_client_rpc_url = "http://{}:{}/".format(
         el_context.ip_addr, el_context.rpc_port_num
     )
-    # Use proper WebSocket scheme for the WS URL
-    el_client_ws_url = "ws://{}:{}/".format(
-        el_context.ip_addr, el_context.ws_port_num
-    )
     el_client_name = el_context.client_name
 
     config_verif = get_config_verif(
@@ -114,7 +110,6 @@ def launch_blockscout(
     config_backend = get_config_backend(
         postgres_output,
         el_client_rpc_url,
-        el_client_ws_url,  # <-- pass WS URL through
         verif_url,
         el_client_name,
         global_node_selectors,
@@ -186,7 +181,6 @@ def get_config_verif(
 def get_config_backend(
     postgres_output,
     el_client_rpc_url,
-    el_client_ws_url,  # <-- added param
     verif_url,
     el_client_name,
     node_selectors,
@@ -219,13 +213,12 @@ def get_config_backend(
         else el_client_name,
         "ETHEREUM_JSONRPC_HTTP_URL": el_client_rpc_url,
         "ETHEREUM_JSONRPC_TRACE_URL": el_client_rpc_url,
-        "ETHEREUM_JSONRPC_WS_URL": el_client_ws_url,  # <-- used here
         "DATABASE_URL": database_url,
         "COIN": "ETH",
         "MICROSERVICE_SC_VERIFIER_ENABLED": "true",
         "MICROSERVICE_SC_VERIFIER_URL": verif_url,
         "MICROSERVICE_SC_VERIFIER_TYPE": "sc_verifier",
-        "INDEXER_DISABLE_PENDING_TRANSACTIONS_FETCHER": "false",
+        "INDEXER_DISABLE_PENDING_TRANSACTIONS_FETCHER": "true",
         "ECTO_USE_SSL": "false",
         "NETWORK": "Kurtosis",
         "SUBNETWORK": "Kurtosis",
