@@ -213,6 +213,7 @@ def get_config_backend(
         else el_client_name,
         "ETHEREUM_JSONRPC_HTTP_URL": el_client_rpc_url,
         "ETHEREUM_JSONRPC_TRACE_URL": el_client_rpc_url,
+        "ETHEREUM_JSONRPC_WS_URL": el_client_rpc_url,
         "DATABASE_URL": database_url,
         "COIN": "ETH",
         "MICROSERVICE_SC_VERIFIER_ENABLED": "true",
