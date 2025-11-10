@@ -113,6 +113,7 @@ def launch_blockscout(
     config_backend = get_config_backend(
         postgres_output,
         el_client_rpc_url,
+        el_client_ws_url,
         verif_url,
         el_client_name,
         global_node_selectors,
@@ -133,6 +134,7 @@ def launch_blockscout(
     config_frontend = get_config_frontend(
         plan,
         el_client_rpc_url,
+        el_client_ws_url,
         docker_cache_params,
         blockscout_params,
         network_params,
@@ -184,6 +186,7 @@ def get_config_verif(
 def get_config_backend(
     postgres_output,
     el_client_rpc_url,
+    el_client_ws_url,
     verif_url,
     el_client_name,
     node_selectors,
