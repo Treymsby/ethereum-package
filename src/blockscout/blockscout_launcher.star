@@ -91,7 +91,8 @@ def launch_blockscout(
     el_client_rpc_url = "http://{}:{}/".format(
         el_context.ip_addr, el_context.rpc_port_num
     )
-    el_client_ws_url = "http://{}:{}/".format(
+    # Use proper WebSocket scheme for the WS URL
+    el_client_ws_url = "ws://{}:{}/".format(
         el_context.ip_addr, el_context.ws_port_num
     )
     el_client_name = el_context.client_name
@@ -113,7 +114,7 @@ def launch_blockscout(
     config_backend = get_config_backend(
         postgres_output,
         el_client_rpc_url,
-        el_client_ws_url,
+        el_client_ws_url,  # <-- pass WS URL through
         verif_url,
         el_client_name,
         global_node_selectors,
@@ -134,7 +135,6 @@ def launch_blockscout(
     config_frontend = get_config_frontend(
         plan,
         el_client_rpc_url,
-        el_client_ws_url,
         docker_cache_params,
         blockscout_params,
         network_params,
@@ -186,7 +186,7 @@ def get_config_verif(
 def get_config_backend(
     postgres_output,
     el_client_rpc_url,
-    el_client_ws_url,
+    el_client_ws_url,  # <-- added param
     verif_url,
     el_client_name,
     node_selectors,
@@ -219,7 +219,7 @@ def get_config_backend(
         else el_client_name,
         "ETHEREUM_JSONRPC_HTTP_URL": el_client_rpc_url,
         "ETHEREUM_JSONRPC_TRACE_URL": el_client_rpc_url,
-        "ETHEREUM_JSONRPC_WS_URL": el_client_ws_url,
+        "ETHEREUM_JSONRPC_WS_URL": el_client_ws_url,  # <-- used here
         "DATABASE_URL": database_url,
         "COIN": "ETH",
         "MICROSERVICE_SC_VERIFIER_ENABLED": "true",
