@@ -218,7 +218,7 @@ def get_config_backend(
         "MICROSERVICE_SC_VERIFIER_ENABLED": "true",
         "MICROSERVICE_SC_VERIFIER_URL": verif_url,
         "MICROSERVICE_SC_VERIFIER_TYPE": "sc_verifier",
-        "INDEXER_DISABLE_PENDING_TRANSACTIONS_FETCHER": "true",
+        "INDEXER_DISABLE_PENDING_TRANSACTIONS_FETCHER": "false",
         "ECTO_USE_SSL": "false",
         "NETWORK": "Kurtosis",
         "SUBNETWORK": "Kurtosis",
