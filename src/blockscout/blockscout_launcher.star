@@ -91,6 +91,9 @@ def launch_blockscout(
     el_client_rpc_url = "http://{}:{}/".format(
         el_context.ip_addr, el_context.rpc_port_num
     )
+    el_client_ws_url = "http://{}:{}/".format(
+        el_context.ip_addr, el_context.ws_port_num
+    )
     el_client_name = el_context.client_name
 
     config_verif = get_config_verif(
@@ -213,7 +216,7 @@ def get_config_backend(
         else el_client_name,
         "ETHEREUM_JSONRPC_HTTP_URL": el_client_rpc_url,
         "ETHEREUM_JSONRPC_TRACE_URL": el_client_rpc_url,
-        "ETHEREUM_JSONRPC_WS_URL": el_client_rpc_url,
+        "ETHEREUM_JSONRPC_WS_URL": el_client_ws_url,
         "DATABASE_URL": database_url,
         "COIN": "ETH",
         "MICROSERVICE_SC_VERIFIER_ENABLED": "true",
